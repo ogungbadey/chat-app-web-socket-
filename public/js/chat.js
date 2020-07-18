@@ -77,7 +77,7 @@ form.addEventListener("submit", e => {
   btn.setAttribute("disabled", "disabled");
 
   let inputEl = input.value;
-  console.log(inputEl)
+  
   socket.emit("sendMessage", inputEl, error => {
     btn.removeAttribute("disabled");
 
@@ -85,12 +85,11 @@ form.addEventListener("submit", e => {
     input.focus();
     if (error) return console.log(error);
 
-    console.log("The message was delivered");
   });
 });
 
 locationBtn.addEventListener("click", () => {
-  console.log("clicked");
+  
   if (!navigator.geolocation) {
     return alert("Geolocation not supported in browser");
   }
@@ -103,7 +102,6 @@ locationBtn.addEventListener("click", () => {
 
     socket.emit("sendLocation", coordObj, () => {
       locationBtn.removeAttribute("disabled");
-      console.log("Location shared");
     });
   });
 });
